@@ -1,1 +1,9 @@
-/* CSS declarations go here */
+body {
+  background: #eee;
+  color: #666666;
+  padding-top: 50px;
+}
+
+.jumbotron{
+	text-align: center;
+}
