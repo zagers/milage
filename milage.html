@@ -6,12 +6,18 @@
   <h1>How many miles have I used on my lease?</h1>
 
   {{> parameters}}	
+  {{> output }}
 </body>
 
 <template name="parameters">
 	<form class="parameters">
-		Annual Milage: <input type="text" name="annualMiles" value="{{annualMiles}}"/>
-		Lease Start Date: <input type="text" name="leaseStartDate" value="{{leaseStartDate}}">
+		<div><label for="annualMiles">Annual Milage:</label><input type="text" name="annualMiles" value="{{annualMiles}}"/></div>
+		<div><label for="leaseStartDate">Lease Start Date:</label><input type="text" name="leaseStartDate" value="{{leaseStartDate}}"></div>
 		<input type="submit" value="Update"/>
 	</form>
+</template>
+
+<template name="output">
+	<p>Today is {{currentDate}}.</p>
+	<p>Your lease allows {{allowedMiles}} miles as of today.</p>
 </template>

@@ -3,12 +3,14 @@ if (Meteor.isClient) {
   Template.parameters.helpers({	
     annualMiles: function () {
 	  var params = Parameters.find().fetch();
-	  var distinctParams = _.uniq(params, false, function (d) {return d.annualMiles})
+	  var distinctParams = _.uniq(params, false, function (d) {return d.annualMiles});
+	  Session.set('annualMiles', _.pluck(distinctParams, "annualMiles") );
       return _.pluck(distinctParams, "annualMiles")
     },
 	leaseStartDate: function(){
 	  var params = Parameters.find().fetch();
-	  var distinctParams = _.uniq(params, false, function (d) {return d.annualMiles})		
+	  var distinctParams = _.uniq(params, false, function (d) {return d.annualMiles});		
+	  Session.set('leaseStartDate', _.pluck(distinctParams, "leaseStartDate"));
 	  return _.pluck(distinctParams, "leaseStartDate")
 	}
   });
@@ -21,20 +23,18 @@ if (Meteor.isClient) {
 	  	var distinctParams = _.uniq(params, false, function (d) {return d.annualMiles})		
 	  	var paramId = _.pluck(distinctParams, "_id").toString();
 		
+		var am = $(e.target).find('[name=annualMiles]').val();
+		var lsd = $(e.target).find('[name=leaseStartDate]').val();
+		
 		var updateParams = {
-			annualMiles: $(e.target).find('[name=annualMiles]').val(),
-			leaseStartDate: $(e.target).find('[name=leaseStartDate]').val()
+			annualMiles: am,
+			leaseStartDate: lsd
 		}
 		
-		console.log(paramId);
-		console.log(updateParams);
+		Session.set('annualMiles', am);
+		Session.set('leaseStartDate', lsd);
+		
 		Parameters.update({_id: paramId}, {$set: updateParams});	
-		
-		//var annualMiles = e.target.annualMiles.value;
-		//var leaseStartDate = e.target.leaseStartDate.value;
-		
-		//console.log("annualMiles = " + annualMiles);
-		//console.log("leaseStartDate = " + leaseStartDate)	
 	}
   });
 }
@@ -46,6 +46,8 @@ if (Meteor.isServer) {
 		Parameters.insert(
 			{annualMiles: '12000',
 			leaseStartDate: '1/1/2014'});
+		Session.set('annualMiles', '12000');
+		Session.set('leaseStartDate', '1/1/2014');
 	}
   });
 }
