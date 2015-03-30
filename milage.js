@@ -50,4 +50,26 @@ if (Meteor.isServer) {
 		Session.set('leaseStartDate', '1/1/2014');
 	}
   });
+
+  Picker.route('/milage', function(params, req, res, next){
+	var params = Parameters.find().fetch();
+	var distinctParams = _.uniq(params, false, function (d) {return d.annualMiles})		
+	var annualMiles = _.pluck(distinctParams, "annualMiles").toString();
+	var leaseStartDate = _.pluck(distinctParams, "leaseStartDate").toString();
+	
+	// Calculate daily Milage Allowance (Annual Miles / days in a year)
+	var dailyMiles = annualMiles / 365;
+	// How many days has it been since lease started?
+	var daysSinceLeaseStarted = moment().diff(leaseStartDate, 'days'); 
+	// Milage allowance is # of days since lease * daily milage allowance
+	var allowance = Math.round(daysSinceLeaseStarted * dailyMiles);		
+	
+	var returnObject = {
+		annualMiles: annualMiles,
+		leaseStartDate: leaseStartDate,
+		allowance: allowance
+	};
+	
+	res.end(JSON.stringify(returnObject));
+  });
 }
