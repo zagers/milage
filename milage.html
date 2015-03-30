@@ -5,7 +5,7 @@
 <body>
   <div class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-xs-4">
 			<div class="jumbotron">
 				{{> output }}<br/>
 				{{> parameters}}
@@ -18,21 +18,21 @@
 <template name="parameters">
 	<form class="form-horizontal">
 		<div class="form-group">
-			<label for="annualMiles" class="col-sm-2 control-label">Annual Milage:</label>
-			<div class="col-sm-10">
+			<label for="annualMiles" class="col-xs-2 control-label">Annual Milage:</label>
+			<div class="col-xs-10">
 				<input type="text" class="form-control" name="annualMiles" value="{{annualMiles}}"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="leaseStartDate" class="col-sm-2 control-label">Lease Start Date:</label>
-			<div class="col-sm-10">
+			<label for="leaseStartDate" class="col-xs-2 control-label">Lease Start Date:</label>
+			<div class="col-xs-10">
 				<input type="text" class="form-control" name="leaseStartDate" value="{{leaseStartDate}}">
 			</div>
 		</div>
-		<button type="submit" class="btn btn-default">Update</button>
+		<button type="submit" class="btn btn-xs">Update</button>
 	</form>
 </template>
 
 <template name="output">
-	<h2>Today is {{currentDate}}. Your lease allows {{allowedMiles}} miles as of today.</h2>
+	<h1>Today is {{currentDate}}. Your lease allows {{allowedMiles}} miles as of today.</h1>
 </template>

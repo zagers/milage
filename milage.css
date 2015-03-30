@@ -4,6 +4,10 @@ body {
   padding-top: 50px;
 }
 
+h1{
+	font-size: 32pt;
+}
+
 .jumbotron{
 	text-align: center;
 }
