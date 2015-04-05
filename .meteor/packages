@@ -11,3 +11,5 @@ underscore
 mrt:moment
 bootstrap
 meteorhacks:picker
+aldeed:autoform
+aldeed:collection2
