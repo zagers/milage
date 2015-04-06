@@ -6,10 +6,11 @@
 
 meteor-platform
 insecure
-msavin:jetsetter
 underscore
 mrt:moment
 bootstrap
-meteorhacks:picker
 aldeed:autoform
-aldeed:collection2
+aldeed:collection2@2.3.3
+iron:router
+msavin:mongol
+msavin:jetsetter

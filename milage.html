@@ -1,39 +1,12 @@
-<head>
-  <title>How many miles have I used?</title>
-  <meta name="viewport" content="width=device-width, user-scalable=no">
-</head>
-
-<body>
+<template name="main">
   <div class="container">
-	<div class="row">
-		<div class="col-xs-4">
-			<div class="jumbotron">
-				{{> output }}<br/>
-				{{> parameters}}
-			</div>
-		</div>
-	</div>
+	  {{> parameters}}
   </div>
-</body>
-
-<template name="parameters">
-	<form class="form-horizontal">
-		<div class="form-group">
-			<label for="annualMiles" class="col-xs-2 control-label">Annual Milage:</label>
-			<div class="col-xs-10">
-				<input type="text" class="form-control" name="annualMiles" value="{{annualMiles}}"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="leaseStartDate" class="col-xs-2 control-label">Lease Start Date:</label>
-			<div class="col-xs-10">
-				<input type="text" class="form-control" name="leaseStartDate" value="{{leaseStartDate}}">
-			</div>
-		</div>
-		<button type="submit" class="btn btn-xs">Update</button>
-	</form>
 </template>
 
-<template name="output">
-	<h1>Today is {{currentDate}}. Your lease allows {{allowedMiles}} miles as of today.</h1>
+<template name="parameters">
+	<div class="jumbotron">
+		<h1>Today is {{currentDate}}. Your lease allows {{allowedMiles}} miles as of today.</h1>
+		{{> quickForm collection="Parameters" id="parameterForm" type="update" doc=this}}
+	</div>
 </template>
